@@ -28,7 +28,7 @@ resource "helm_release" "external_secrets" {
   }
 
   set {
-    name  = "serviceAccount.annotations.iam.gke.io/gcp-service-account"
+    name  = "serviceAccount.annotations.iam\\.gke\\.io/gcp-service-account"
     value = "external-secrets@${var.project_id}.iam.gserviceaccount.com"
   }
 
@@ -76,4 +76,29 @@ module "cert_manager_workload_identity" {
   roles               = ["roles/secretmanager.secretAccessor"]
   use_existing_k8s_sa = true
   annotate_k8s_sa     = false
+}
+
+resource "helm_release" "cluster_gcp_secret_store" {
+  count      = var.enable_external_secrets ? 1 : 0
+  name       = "external-secrets-resources"
+  repository = "https://bedag.github.io/helm-charts/"
+  chart      = "raw"
+  version    = "2.0.0"
+  namespace  = "external-secrets"
+  values = [
+    <<-EOF
+    resources:
+      - apiVersion: external-secrets.io/v1beta1
+        kind: ClusterSecretStore
+        metadata:
+          name: gcp-store
+        spec:
+          provider:
+            gcpsm:
+              projectID: var.project_id
+    EOF
+  ]
+  depends_on = [
+    helm_release.external_secrets
+  ]
 }

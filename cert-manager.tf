@@ -15,11 +15,11 @@ resource "helm_release" "cert_manager" {
 }
 
 resource "helm_release" "cluster_issuer_letsencrypt_production" {
-  name       = "external-secrets-resources"
+  name       = "cert-manager-resources"
   repository = "https://bedag.github.io/helm-charts/"
   chart      = "raw"
   version    = "2.0.0"
-  namespace  = "external-secrets"
+  namespace  = "cert-manager"
   values = [
     <<-EOF
     resources:
@@ -45,37 +45,3 @@ resource "helm_release" "cluster_issuer_letsencrypt_production" {
     helm_release.cert_manager
   ]
 }
-
-/*
-resource "kubernetes_manifest" "cluster_issuer_letsencrypt_production" {
-  manifest = {
-    "apiVersion" = "cert-manager.io/v1"
-    "kind"       = "ClusterIssuer"
-    "metadata" = {
-      "name" = "letsencrypt-prod"
-    }
-    "spec" = {
-      "acme" = {
-        "email"          = "some@mail.com"
-        "preferredChain" = ""
-        "privateKeySecretRef" = {
-          "name" = "letsencrypt-prod"
-        }
-        "server" = "https://acme-v02.api.letsencrypt.org/directory"
-        "solvers" = [
-          {
-            "http01" = {
-              "ingress" = {
-                "class" = "nginx"
-              }
-            }
-          },
-        ]
-      }
-    }
-  }
-  depends_on = [
-    helm_release.cert_manager
-  ]
-}
-*/
