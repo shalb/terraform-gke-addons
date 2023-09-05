@@ -28,6 +28,11 @@ resource "helm_release" "external_secrets" {
   }
 
   set {
+    name  = "serviceAccount.annotations.iam.gke.io/gcp-service-account"
+    value = "external-secrets@${var.project_id}.iam.gserviceaccount.com"
+  }
+
+  set {
     name  = "resources.requests.cpu"
     value = "0.1"
   }
@@ -70,5 +75,5 @@ module "cert_manager_workload_identity" {
   project_id          = var.project_id
   roles               = ["roles/iam.serviceAccountTokenCreator"]
   use_existing_k8s_sa = true
-  annotate_k8s_sa     = true
+  annotate_k8s_sa     = false
 }
