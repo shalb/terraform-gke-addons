@@ -70,5 +70,5 @@ module "cert_manager_workload_identity" {
   project_id          = var.project_id
   roles               = ["roles/iam.serviceAccountTokenCreator"]
   use_existing_k8s_sa = true
-  annotate_k8s_sa     = false
+  annotate_k8s_sa     = true
 }
