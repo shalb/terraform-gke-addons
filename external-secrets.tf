@@ -73,7 +73,7 @@ module "cert_manager_workload_identity" {
   name                = "external-secrets"
   namespace           = "external-secrets"
   project_id          = var.project_id
-  roles               = ["roles/iam.serviceAccountTokenCreator"]
+  roles               = ["roles/secretmanager.secretAccessor"]
   use_existing_k8s_sa = true
   annotate_k8s_sa     = false
 }
