@@ -10,12 +10,6 @@ variable "gke_ca_certificate" {
   description = "gke cluster ca certificate"
 }
 
-variable "cluster-name" {
-  type        = string
-  default     = ""
-  description = "gke cluster name"
-}
-
 variable "project_id" {
   type        = string
   default     = ""

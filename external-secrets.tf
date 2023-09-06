@@ -95,7 +95,7 @@ resource "helm_release" "cluster_gcp_secret_store" {
         spec:
           provider:
             gcpsm:
-              projectID: var.project_id
+              projectID: ${var.project_id}
     EOF
   ]
   depends_on = [

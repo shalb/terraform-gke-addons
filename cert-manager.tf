@@ -36,7 +36,7 @@ resource "helm_release" "cluster_issuer_letsencrypt_production" {
               service: ParameterStore
             server: "https://acme-v02.api.letsencrypt.org/directory"
             solver:
-              http01:
+            - http01:
                 ingress:
                   class: "nginx"
     EOF
