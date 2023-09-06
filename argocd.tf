@@ -57,4 +57,7 @@ resource "helm_release" "argocd" {
     name  = "global.image.tag"
     value = var.argocd_image_tag
   }
+  depends_on = [
+    helm_release.cert_manager
+  ]
 }
