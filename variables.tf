@@ -63,3 +63,31 @@ variable "enable_external_secrets" {
   default     = false
   description = "Disable/enable external secrets"
 }
+
+variable "argocd_chart_version" {
+  type        = string
+  default     = "5.43.3"
+  description = "Argocd helm chart version"
+}
+
+variable "argocd_image_tag" {
+  type        = string
+  default     = "v2.8.0"
+  description = "Argocd docker image version"
+}
+
+variable "argocd_password_bcrypted" {
+  type        = string
+  description = "Bctypted password (hash) for argocd web ui"
+  default     = ""
+}
+
+variable "enable_argocd" {
+  type        = bool
+  default     = false
+  description = "Disable/enable ArgoCD addon"
+}
+variable "domain" {
+  type        = string
+  description = "DNS domain to create apps DNS records for applications"
+}
