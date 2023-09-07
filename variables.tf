@@ -91,3 +91,15 @@ variable "domain" {
   type        = string
   description = "DNS domain to create apps DNS records for applications"
 }
+
+variable "enable_external_dns" {
+  type        = bool
+  default     = false
+  description = "Disable/enable external dns"
+}
+
+variable "external_dns_version" {
+  type        = string
+  default     = "6.5.6"
+  description = "External dns helm chart version"
+}

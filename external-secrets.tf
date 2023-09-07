@@ -66,7 +66,7 @@ resource "helm_release" "external_secrets" {
 
 # This module will create a Google Service account and configure the right permissions
 # to be allowed to use the workload identity on GKE.
-module "cert_manager_workload_identity" {
+module "external_secrets_workload_identity" {
   count               = var.enable_external_secrets ? 1 : 0
   source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
   version             = "~> 27.0.0"
