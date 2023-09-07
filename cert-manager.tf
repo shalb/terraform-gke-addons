@@ -22,23 +22,23 @@ resource "helm_release" "cluster_issuer_letsencrypt_production" {
   namespace  = "cert-manager"
   values = [
     <<-EOF
-    resources:
-      - apiVersion: cert-manager.io/v1
-        kind: ClusterIssuer
-        metadata:
-          name: letsencrypt-prod
-        spec:
-          acme:
-            email: "some@mail.com"
-            preferredChain: ""
-            privateKeySecretRef:
-              name: "letsencrypt-prod"
-              service: ParameterStore
-            server: "https://acme-v02.api.letsencrypt.org/directory"
-            solver:
-            - http01:
-                ingress:
-                  class: "nginx"
+    templates:
+    - |
+      apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      metadata:
+        name: letsencrypt-prod
+      spec:
+        acme:
+          email: some@mail.com
+          preferredChain: ""
+          privateKeySecretRef:
+            name: letsencrypt-prod
+          server: https://acme-v02.api.letsencrypt.org/directory
+          solvers:
+          - http01:
+              ingress:
+                class: nginx
     EOF
   ]
   depends_on = [
