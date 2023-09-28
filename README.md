@@ -1,24 +1,28 @@
 # GCP GKE Terraform Module
 
-#### Features
+[![Cluster.dev logo](https://raw.githubusercontent.com/shalb/cluster.dev/master/docs/images/cdev-module-banner.png?sanitize=true)](https://cluster.dev/)
 
-This Terraform module simplifies the process of deploying essential core addons to your Google Kubernetes Engine (GKE) clusters. These addons enhance the functionality and security of your GKE environment. Here are the key features of this module:
+Terraform module that deploys essential core add-ons to your Google Kubernetes Engine (GKE) cluster. This Terraform module is also used as part of the [GCP-GKE Cluster.dev stack template](https://github.com/shalb/cdev-gcp-gke) to start and provision a GKE cluster with add-ons in Google Cloud Platform. 
 
-1. **Ingress Nginx**: Easily deploy the Ingress Nginx controller, which provides a powerful and scalable solution for managing external access to services within your GKE cluster. Ingress Nginx is crucial for routing external traffic to your applications.
+## Features
 
-2. **External DNS**: Seamlessly configure External DNS for your GKE cluster. External DNS automatically manages DNS records in your chosen DNS provider based on changes in your cluster's services and Ingress resources. It simplifies DNS management and ensures that your applications are always reachable via DNS.
+The module installs the following add-ons to a GKE cluster:
 
-3. **External Secrets**: Securely manage secrets in your GKE cluster using External Secrets. This module helps you integrate External Secrets, which allows you to fetch secrets from various secret stores and inject them into your pods as environment variables or files. This enhances the security and flexibility of secret management.
+1. **Ingress-Nginx**: Easily deploy the Ingress Nginx controller, which provides a powerful and scalable solution for managing external access to services within your GKE cluster. Ingress Nginx is crucial for routing external traffic to your applications.
+
+2. **External-DNS**: Seamlessly configure External DNS for your GKE cluster. External DNS automatically manages DNS records in your chosen DNS provider based on changes in your cluster's services and Ingress resources. It simplifies DNS management and ensures that your applications are always reachable via DNS.
+
+3. **External-Secrets**: Securely manage secrets in your GKE cluster using External Secrets. This module helps you integrate External Secrets, which allows you to fetch secrets from various secret stores and inject them into your pods as environment variables or files. This enhances the security and flexibility of secret management.
 
 4. **Cert-Manager**: Deploy Cert-Manager to automate the management of SSL/TLS certificates in your GKE cluster. Cert-Manager simplifies the process of obtaining and renewing certificates from Let's Encrypt or other certificate authorities, ensuring that your applications are served over HTTPS securely.
 
 5. **Reloader**: Automatically update ConfigMaps and Secrets in your Kubernetes cluster when their sources change. Reloader helps keep your cluster configuration up-to-date by watching for changes in ConfigMaps and Secrets and triggering updates when changes occur.
 
-By using this Terraform module, you can streamline the deployment of these essential addons, including Reloader, and focus on developing and running your applications without worrying about the complexities of addon setup.
+By using this Terraform module, you can streamline the deployment of these essential add-ons, including Reloader, and focus on developing and running your applications without worrying about the complexities of add-on setup.
 
-#### Usage
+## Usage
 
-To use this Terraform module for installing core addons in your GKE cluster, follow these steps:
+To use this Terraform module for installing core add-ons in your GKE cluster, follow these steps:
 
 1. **Module Configuration**: In your Terraform configuration, define the module and configure the necessary variables. Here's an example of how to include this module in your Terraform code:
 
@@ -39,7 +43,7 @@ To use this Terraform module for installing core addons in your GKE cluster, fol
    }
    ```
 
-#### Requirements
+## Requirements
 
 | Name | Version |
 |------|---------|
